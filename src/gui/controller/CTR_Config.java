@@ -16,9 +16,12 @@ public class CTR_Config {
     @FXML
     public CheckBox check_update;
     @FXML
+    public CheckBox check_multiClock;
+    @FXML
     Label label_console;
 
-    public static boolean updateConfig = true;
+    public static boolean doUpdate = true;
+    public static boolean multiClock = false;
     private ArrayList<String> configList = new ArrayList<>();
 
     public CTR_Config() {
@@ -26,15 +29,20 @@ public class CTR_Config {
     }
 
     public void initialize() {
-        check_update.setSelected(updateConfig);
+        check_update.setSelected(doUpdate);
+        check_multiClock.setSelected(multiClock);
     }
 
     public void loadConfig() throws IOException {
+        configList.clear();
         if(File_Handler.fileExist("ver/config.txt")) {
             configList = File_Handler.fileLoader("ver/config.txt");
             try {
                 if (configList.get(0).equals("0")) {
-                    updateConfig = false;
+                    doUpdate = false;
+                }
+                if (configList.get(1).equals("1")) {
+                    multiClock = true;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -44,9 +52,11 @@ public class CTR_Config {
     }
 
     public void save() {
-        updateConfig = check_update.isSelected();
+        doUpdate = check_update.isSelected();
+        multiClock = check_multiClock.isSelected();
 
-        configList.add(getBoolAsString(updateConfig));
+        configList.add(getBoolAsString(doUpdate));
+        configList.add(getBoolAsString(multiClock));
         try {
             File_Handler.fileWriter("ver/config.txt", configList);
             label_console.setText("erfolgreich gespeichert");

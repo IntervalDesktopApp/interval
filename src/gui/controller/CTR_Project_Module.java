@@ -114,9 +114,11 @@ public class CTR_Project_Module {
         else {
             System.out.println("index: " + index);
             //überprüfen ob andere Uhre noch laufen und diese stoppen
-            for(CTR_Project_Module projects : Manager.projectList) {
-                if(projects.running) {
-                    projects.clockStop();
+            if(!CTR_Config.multiClock) {
+                for (CTR_Project_Module projects : Manager.projectList) {
+                    if (projects.running) {
+                        projects.clockStop();
+                    }
                 }
             }
             newSec = 0;

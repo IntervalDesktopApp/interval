@@ -30,7 +30,7 @@ public class Launcher extends Application {
         primaryStage.show();
 
         new Thread(() -> Platform.runLater(() -> {
-            if(CTR_Config.updateConfig) {
+            if(CTR_Config.doUpdate) {
                 try {
                     if(!File_Handler.fileExist("ver")){
                         File_Handler.createDir("ver");

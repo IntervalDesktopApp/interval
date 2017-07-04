@@ -15,26 +15,28 @@
       </Label>
       <HBox fx:id="mainHBox">
          <children>
-            <VBox fx:id="vbox_Text" prefWidth="400.0">
+            <VBox fx:id="vbox_Text" prefWidth="400.0" spacing="10.0">
                <children>
                   <Label text="automatisch auf Uppdates überprüfen">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Label>
+                  <Label text="Mehrere Uhren gleichzeitig laufen lassen" />
                </children>
             </VBox>
-            <VBox fx:id="vbox_Control">
+            <VBox fx:id="vbox_Control" spacing="10.0">
                <children>
                   <CheckBox fx:id="check_update" mnemonicParsing="false">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin></CheckBox>
+                  <CheckBox fx:id="check_multiClock" mnemonicParsing="false" />
                   <HBox>
                      <children>
                         <Button fx:id="btn_save" mnemonicParsing="false" onAction="#save" text="Speicher">
                            <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                      </children>
