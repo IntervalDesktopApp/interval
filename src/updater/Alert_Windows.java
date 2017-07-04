@@ -40,6 +40,7 @@ public class Alert_Windows {
     }
 
     public boolean confirmDialogFX(String title, String header, String text) {
+        System.out.println("alertTest1");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -47,6 +48,7 @@ public class Alert_Windows {
         //alert.initOwner(Main_Application.primaryStage);
 
         Optional<ButtonType> result = alert.showAndWait();
+        System.out.println("alertTest2");
         if (result.get() == ButtonType.OK){
             return true;
         } else {

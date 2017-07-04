@@ -13,15 +13,16 @@ import updater.Updater_Main;
 
 public class Launcher extends Application {
 
-    Main_Application mainApp = new Main_Application();
-    Updater_Main updater = new Updater_Main();
+    private Main_Application mainApp = new Main_Application();
+    private Updater_Main updater = new Updater_Main();
+    public static final String appName = "Interval";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent startScreen = FXMLLoader.load(getClass().getResource("/fxml/startScreen.fxml"));
         Scene scene = new Scene(startScreen);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("TimeStamp laden...");
+        primaryStage.setTitle(appName +" laden...");
 
         CTR_Config ctr_config = new CTR_Config();
         ctr_config.loadConfig();
@@ -59,7 +60,7 @@ public class Launcher extends Application {
         boolean update = updater.start(mainApp.getBuild());
         if(update) {
             Runtime runTime = Runtime.getRuntime();
-            runTime.exec("java -jar TimeStamp.jar");
+            runTime.exec("java -jar " + appName + ".jar");
             primaryStage.close();
         } else {
             mainApp.start(new Stage());

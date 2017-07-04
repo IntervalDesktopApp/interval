@@ -1,7 +1,6 @@
 package gui.controller;
 
 import handling.CSV_ClientHandler;
-import handling.Color_Manager;
 import handling.Manager;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -25,7 +24,7 @@ public class NewClient {
 
         Stage newClient = new Stage();
         VBox vbox = new VBox();
-        Scene scene = new Scene(vbox, 300, 300);
+        Scene scene = new Scene(vbox);
 
         HBox hboxEntry = new HBox();
         HBox hboxButton = new HBox();
@@ -35,15 +34,8 @@ public class NewClient {
 
         Label title = new Label("Kunde anlegen");
         TextField nameField = new TextField();
-        ChoiceBox colorChooser = new ChoiceBox();
-
         ColorPicker colorPicker = new ColorPicker();
 
-        Color_Manager color_manager = new Color_Manager();
-        for (Color_Object color_object : color_manager.getColors()) {
-            colorChooser.getItems().add(color_object.getName());
-        }
-        colorChooser.getSelectionModel().selectFirst();
         Button btn_save = new Button("Speichern");
         Button btn_abort = new Button("Abbrechen");
 

@@ -1,8 +1,13 @@
 package updater;
 
+import handling.File_Handler;
 import javafx.scene.control.Alert;
+import main.launcher.Launcher;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -47,8 +52,10 @@ public class Updater {
                 System.out.println("old build: " + Updater_Main.build);
                 //float newBuildFloat = Float.parseFloat(newBuild);
                 //if(!newBuild.equals(null) && !newBuild.equals(Updater_Main.build)) {
+                System.out.println("direkt vor flaoting");
                 if(Float.parseFloat(newBuild) > Float.parseFloat(Updater_Main.build) && !newBuild.equals(null)) {
-                    if(alerts.confirmDialogFX("Update", "Es ist ein Update verfügbar", "Möchtest du TimeStamp aktualisieren?")) {
+                    System.out.println("test vor alert");
+                    if(alerts.confirmDialogFX("Update", "Es ist ein Update verfügbar", "Möchtest du " + Launcher.appName + " aktualisieren?")) {
                         System.out.println("True");
                         return true;
                     } else {
@@ -68,7 +75,7 @@ public class Updater {
 
     private void update() throws IOException {
         System.out.println("newbuild: " + newBuild);
-        ftp_handler.downloadFile("/timestamp.tobiasbormann.de/update/TimeStamp_" + newBuild + ".jar", "TimeStamp.jar");
+        ftp_handler.downloadFile("/timestamp.tobiasbormann.de/update/" + Launcher.appName + "_" + newBuild + ".jar", Launcher.appName + ".jar");
         System.out.println("heruntergeladen");
     }
 
@@ -87,17 +94,6 @@ public class Updater {
         alert.setContentText(content);
 
         alert.showAndWait();
-
-        /*
-        JTextArea textArea = new JTextArea(content);
-        textArea.setColumns(30);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-
-        textArea.setSize(textArea.getPreferredSize().width, 1);
-        JOptionPane.showMessageDialog(null, new JScrollPane(textArea), "Update verfügbar",
-                JOptionPane.WARNING_MESSAGE);*/
-
         renameBuildFile();
     }
 

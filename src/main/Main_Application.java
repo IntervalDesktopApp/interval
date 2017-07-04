@@ -14,12 +14,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import gui.controller.CTR_Dashboard;
 import javafx.stage.WindowEvent;
+import main.launcher.Launcher;
 
 import java.io.IOException;
 
 public class Main_Application extends Application {
 
-    public static final String build = "0.44";
+    public static final String build = "0.43";
 
     private final String fn = "SourceSansPro-";
     private final String[] fonts = {"uiicons.ttf", fn+"Black.tff", fn+"BlackItalic.tff", fn+"Bold.tff",
@@ -80,7 +81,7 @@ public class Main_Application extends Application {
 
     public void loadDashboard() throws IOException {
         dashboard = FXMLLoader.load(getClass().getResource("/fxml/dashboard.fxml"));
-        primaryStage.setTitle("TimeStamp Dashboard - build: " + build);
+        primaryStage.setTitle(Launcher.appName);
         Scene dashboardScene = new Scene(dashboard, 1005, 720);
         dashboardScene.getStylesheets().add(getClass().getResource("/css/ui_view.css").toExternalForm());
         primaryStage.setScene(dashboardScene);
