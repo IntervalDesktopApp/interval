@@ -25,12 +25,11 @@ public class Launcher extends Application {
         primaryStage.setTitle(appName +" laden...");
 
         CTR_Config ctr_config = new CTR_Config();
-        ctr_config.loadConfig();
 
         primaryStage.show();
 
         new Thread(() -> Platform.runLater(() -> {
-            if(CTR_Config.doUpdate) {
+            if(ctr_config.getConfigObject().isDoUpdate()) {
                 try {
                     if(!File_Handler.fileExist("ver")){
                         File_Handler.createDir("ver");

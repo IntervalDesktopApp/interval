@@ -4,6 +4,7 @@ import handling.File_Handler;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import object.ConfigObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,20 +21,39 @@ public class CTR_Config {
     @FXML
     Label label_console;
 
-    public static boolean doUpdate = true;
-    public static boolean multiClock = false;
-    private ArrayList<String> configList = new ArrayList<>();
+
+    private ArrayList<String> configList;
+    private ConfigObject configObject = new ConfigObject();
 
     public CTR_Config() {
-
+        configObject = new ConfigObject();
+        if(File_Handler.fileExist("config.dat")) {
+            configObject = (ConfigObject) File_Handler.loadObjects("config.dat");
+        }
     }
 
     public void initialize() {
-        check_update.setSelected(doUpdate);
-        check_multiClock.setSelected(multiClock);
+        check_update.setSelected(configObject.isDoUpdate());
+        check_multiClock.setSelected(configObject.isMultiClock());
     }
 
+    public void save() {
+        configObject.setDoUpdate(check_update.isSelected());
+        configObject.setMultiClock(check_multiClock.isSelected());
+        File_Handler.writeObject(configObject, "config.dat");
+    }
+
+    public ConfigObject getConfigObject() {
+        return configObject;
+    }
+
+    public void setConfigObject(ConfigObject configObject) {
+        this.configObject = configObject;
+    }
+
+    /*
     public void loadConfig() throws IOException {
+
         configList.clear();
         if(File_Handler.fileExist("ver/config.txt")) {
             configList = File_Handler.fileLoader("ver/config.txt");
@@ -70,4 +90,5 @@ public class CTR_Config {
         if(bool) return "1";
         else return "0";
     }
+    */
 }

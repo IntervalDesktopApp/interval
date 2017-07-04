@@ -61,11 +61,11 @@ public class File_Handler {
         return data;
     }
 
-    public void writeObject(Object object){
+    public static void writeObject(Object object, String path){
         FileOutputStream fout = null;
         ObjectOutputStream oos = null;
         try{
-            fout = new FileOutputStream("Accounts/handler.dat");
+            fout = new FileOutputStream(path);
             oos = new ObjectOutputStream(fout);
             oos.writeObject(object);
             fout.close();
@@ -78,12 +78,12 @@ public class File_Handler {
         }
     }
 
-    public Object loadObjects(){
+    public static Object loadObjects(String path){
         FileInputStream fin = null;
         ObjectInputStream ois = null;
         Object object;
         try{
-            fin = new FileInputStream("Accounts/handler.dat");
+            fin = new FileInputStream(path);
             ois = new ObjectInputStream(fin);
             object = ois.readObject();
             fin.close();
