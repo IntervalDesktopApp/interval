@@ -40,6 +40,8 @@ public class CTR_Project_Module {
     private Label label_firstChar;
     @FXML
     private VBox vbox_detail;
+    @FXML
+    TitledPane titledPane;
 
     private String name;
     private ClientStorageObject client;
@@ -76,27 +78,18 @@ public class CTR_Project_Module {
             getTimeToday();
             textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
         }
-        label_time.setText(Manager.printTime(mainSec));
-        label_time_today.setText(Manager.printTime(timeToday));
-    }
+        if(timeToday != 0) {
+            titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
+        }
 
-    public void initAtRuntime1() {
-        label_projName.setText(name);
-        label_client.setText(client.getName());
-        char p = client.getName().charAt(0);
-        char pUpper = Character.toUpperCase(p);
-        label_firstChar.setText(String.valueOf(pUpper));
-        label_firstChar.setStyle("-fx-background-color: " + Manager.getHexColorString(client.getColor()) + ";" + Manager.getCSSTextColorByBrightness(client.getColor()));
-
-        //wenn StorageObjekte vorhanden sind, errechne die gesamtzeit daraus
-        if(storageObjects.size() != 0) {
-            getWholeTime();
-            getTimeToday();
-            textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
+        if(timeToday == mainSec) {
+            label_time.setVisible(false);
+            label_time.setManaged(false);
         }
         label_time.setText(Manager.printTime(mainSec));
         label_time_today.setText(Manager.printTime(timeToday));
     }
+
 
     public void initTrackingData() {
         vbox_detail.getChildren().clear();
@@ -141,7 +134,8 @@ public class CTR_Project_Module {
             running = true;
             btn_timer.setText("\uF00E");
             //btn_timer.setId("");
-            btn_timer.setStyle("-fx-text-fill: rgb(65, 63, 84)");
+            btn_timer.setStyle("-fx-text-fill: rgb(65, 63, 84);");
+            titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
            // main_hbox.setStyle("-fx-background-color: rgba(140, 255, 152, 0.7);");
         }
     }
@@ -225,8 +219,10 @@ public class CTR_Project_Module {
     public void resetTime() {
         if(Alert_Windows.confirmDialog("Zeit auf Null setzen", "Die Gesamtzeit auf Null zurücksetzen", "Möchtest du das wirklich die Gesamtzeit auf Null setzen?")) {
             mainSec = 0;
+            timeToday = 0;
             addStorageObject(new StorageObject(date, mainSec,"Zeit auf Null gesetzt"));
             label_time.setText(Manager.printTime(mainSec));
+            label_time_today.setText(Manager.printTime(timeToday));
         }
     }
 
