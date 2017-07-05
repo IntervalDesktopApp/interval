@@ -23,12 +23,18 @@ public class CTR_Config {
 
 
     private ArrayList<String> configList;
-    private ConfigObject configObject = new ConfigObject();
+    public static ConfigObject configObject;
 
     public CTR_Config() {
         configObject = new ConfigObject();
+        System.out.println(configObject.isDoUpdate());
         if(File_Handler.fileExist("config.dat")) {
-            configObject = (ConfigObject) File_Handler.loadObjects("config.dat");
+            try {
+                configObject = (ConfigObject) File_Handler.loadObjects("config.dat");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("objekteloading fehlgeschlagen");
+            }
         }
     }
 

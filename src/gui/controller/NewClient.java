@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import object.ClientStorageObject;
-import object.Color_Object;
 
 import java.io.IOException;
 import java.util.ArrayList;

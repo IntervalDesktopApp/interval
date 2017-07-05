@@ -73,6 +73,7 @@ public class File_Handler {
             System.out.println("Objekt geschrieben");
 
         }catch(Exception e){
+            e.printStackTrace();
             System.out.println(e);
             System.out.println("Error Writing AccountObjects");
         }

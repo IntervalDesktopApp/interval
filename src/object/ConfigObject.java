@@ -1,9 +1,11 @@
 package object;
 
+import java.io.Serializable;
+
 /**
  * Created by Eike on 04.07.2017.
  */
-public class ConfigObject {
+public class ConfigObject implements Serializable {
 
     private boolean doUpdate = true;
     private boolean multiClock = false;

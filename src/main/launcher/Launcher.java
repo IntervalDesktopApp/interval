@@ -24,11 +24,10 @@ public class Launcher extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle(appName +" laden...");
 
-        CTR_Config ctr_config = new CTR_Config();
-
         primaryStage.show();
 
         new Thread(() -> Platform.runLater(() -> {
+            CTR_Config ctr_config = new CTR_Config();
             if(ctr_config.getConfigObject().isDoUpdate()) {
                 try {
                     if(!File_Handler.fileExist("ver")){
