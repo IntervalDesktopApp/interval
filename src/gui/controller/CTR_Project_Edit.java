@@ -172,7 +172,7 @@ public class CTR_Project_Edit {
             csv_projectHandler.csvWriter();
             stage.close();
             System.out.println("seceonds1 : " + project.getMainSec());
-            project.initAtRuntime();
+            project.initialize();
         }
     }
 
@@ -200,9 +200,12 @@ public class CTR_Project_Edit {
         minutes = (hours * 60) + minutes;
         int seconds = minutes * 60;
         project.label_time.setText(Manager.printTime(seconds));
-        String comment = Alert_Windows.inputBox("Kommentar", "Kommentar für die korrigierte Zeit einfügen", "Was hast du in dieser Zeit gemacht?");
-        if(comment.equals("")){
-            comment = "Zeit korrigiert";
+        String comment = "Korrektur";
+        if((seconds - project.getMainSec()) > 0) {
+            comment = Alert_Windows.inputBox("Kommentar", "Kommentar für die korrigierte Zeit einfügen", "Was hast du in dieser Zeit gemacht?");
+            if (comment.equals("")) {
+                comment = "Zeit korrigiert";
+            }
         }
         project.addStorageObject(new StorageObject(LocalDate.now(),seconds-project.getMainSec(), comment));
         project.setMainSec(seconds);

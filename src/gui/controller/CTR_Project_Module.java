@@ -33,6 +33,8 @@ public class CTR_Project_Module {
     @FXML
     public Label label_client;
     @FXML
+    public Label label_time_today;
+    @FXML
     private TextField textArea_comment;
     @FXML
     private Label label_firstChar;
@@ -42,6 +44,7 @@ public class CTR_Project_Module {
     private String name;
     private ClientStorageObject client;
     private int mainSec = 0;
+    private int timeToday = 0;
     private int newSec = 0;
     private int index;
     private LocalDate date =LocalDate.now();
@@ -70,13 +73,14 @@ public class CTR_Project_Module {
         //wenn StorageObjekte vorhanden sind, errechne die gesamtzeit daraus
         if(storageObjects.size() != 0) {
             getWholeTime();
+            getTimeToday();
             textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
         }
         label_time.setText(Manager.printTime(mainSec));
+        label_time_today.setText(Manager.printTime(timeToday));
     }
 
-    public void initAtRuntime() {
-
+    public void initAtRuntime1() {
         label_projName.setText(name);
         label_client.setText(client.getName());
         char p = client.getName().charAt(0);
@@ -87,10 +91,11 @@ public class CTR_Project_Module {
         //wenn StorageObjekte vorhanden sind, errechne die gesamtzeit daraus
         if(storageObjects.size() != 0) {
             getWholeTime();
+            getTimeToday();
             textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
         }
-        System.out.println("mainSec 2:" + mainSec);
         label_time.setText(Manager.printTime(mainSec));
+        label_time_today.setText(Manager.printTime(timeToday));
     }
 
     public void initTrackingData() {
@@ -127,7 +132,9 @@ public class CTR_Project_Module {
             KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
                 mainSec++;
                 newSec++;
+                timeToday++;
                 label_time.setText(Manager.printTime(mainSec));
+                label_time_today.setText(Manager.printTime(timeToday));
             });
             mainTime.getKeyFrames().add(frame);
             mainTime.play();
@@ -188,6 +195,18 @@ public class CTR_Project_Module {
             }
             mainSec = mainSec + store.getSec();
         }
+    }
+
+    private int getTimeToday() {
+        timeToday = 0;
+        for(StorageObject store : storageObjects) {
+            if(store.getComment().equals("Zeit auf Null gesetzt")) {
+                timeToday = 0;
+            } else if(store.getDate().equals(LocalDate.now())) {
+                timeToday += store.getSec();
+            }
+        }
+        return timeToday;
     }
 
     public void deleteProject() throws IOException {

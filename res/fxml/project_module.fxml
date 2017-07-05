@@ -11,7 +11,7 @@
 
 <TitledPane fx:id="titlepane" expanded="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <graphic>
-      <HBox fx:id="main_hbox" fillHeight="false" maxWidth="1115.0" minWidth="332.0" prefHeight="80.0" prefWidth="1115.0" styleClass="project" stylesheets="@../css/ui_view.css">
+      <HBox fx:id="main_hbox" fillHeight="false" maxWidth="1115.0" minHeight="85.0" minWidth="332.0" prefHeight="85.0" prefWidth="1115.0" styleClass="project" stylesheets="@../css/ui_view.css">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="note">
                <children>
@@ -32,11 +32,15 @@
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="projectdivider" visible="false" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="time">
+            <VBox alignment="CENTER" prefHeight="79.0" prefWidth="149.0" spacing="5.0">
                <children>
-                  <Label fx:id="label_time" styleClass="time" text="00:00">
+                  <Label fx:id="label_time_today" text="00:00:00">
                      <font>
                         <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="label_time" text="00:00:00" textFill="#4d4d4d">
+                     <font>
+                        <Font size="14.0" />
                      </font>
                   </Label>
                </children>

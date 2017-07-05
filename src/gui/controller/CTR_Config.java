@@ -28,9 +28,9 @@ public class CTR_Config {
     public CTR_Config() {
         configObject = new ConfigObject();
         System.out.println(configObject.isDoUpdate());
-        if(File_Handler.fileExist("config.dat")) {
+        if(File_Handler.fileExist("ver/config.dat")) {
             try {
-                configObject = (ConfigObject) File_Handler.loadObjects("config.dat");
+                configObject = (ConfigObject) File_Handler.loadObjects("ver/config.dat");
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("objekteloading fehlgeschlagen");
@@ -46,7 +46,7 @@ public class CTR_Config {
     public void save() {
         configObject.setDoUpdate(check_update.isSelected());
         configObject.setMultiClock(check_multiClock.isSelected());
-        File_Handler.writeObject(configObject, "config.dat");
+        File_Handler.writeObject(configObject, "ver/config.dat");
     }
 
     public ConfigObject getConfigObject() {

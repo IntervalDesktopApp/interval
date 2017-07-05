@@ -123,7 +123,7 @@ public class Client_ObjectUI {
         CSV_ClientHandler.csvWriter();
         ctr_client.initialize();
         for(CTR_Project_Module project : Manager.projectList) {
-            project.initAtRuntime();
+            project.initialize();
         }
     }
 
