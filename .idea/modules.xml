@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Interval.iml" filepath="$PROJECT_DIR$/Interval.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/interval.iml" filepath="$PROJECT_DIR$/.idea/interval.iml" />
     </modules>
   </component>
 </project>
