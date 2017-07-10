@@ -78,7 +78,10 @@ public class CTR_Project_Edit {
     }
 
     public void projPath() {
-        path = Alert_Windows.chooseDir();
+        String temp = Alert_Windows.chooseDir();
+        if(!temp.equals("")) {
+            path = temp;
+        }
     }
 
 
