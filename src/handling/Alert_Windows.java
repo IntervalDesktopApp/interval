@@ -3,8 +3,10 @@ package handling;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.DirectoryChooser;
 import main.Main_Application;
 
+import java.io.File;
 import java.util.Optional;
 
 /**
@@ -40,6 +42,19 @@ public class Alert_Windows {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public static String chooseDir() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory =
+                directoryChooser.showDialog(Main_Application.primaryStage);
+
+        if(selectedDirectory == null){
+            System.out.println("No Directory selected");
+            return "";
+        }else{
+            return (selectedDirectory.getAbsolutePath());
         }
     }
 

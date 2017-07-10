@@ -35,6 +35,7 @@ public class CTR_Project_Edit {
     public TextField textField_addMin;
 
     private CSV_ProjectHandler csv_projectHandler = new CSV_ProjectHandler();
+    private String path = "";
 
     private CTR_Project_Module project;
     //private String name;
@@ -54,6 +55,7 @@ public class CTR_Project_Edit {
         //this.maxHour = maxHour;
         this.stage = stage;
         //this.client = client;
+        path = project.getProjectpath();
     }
 
     public void initialize() {
@@ -73,6 +75,10 @@ public class CTR_Project_Edit {
             i++;
         }
         chb_client.getSelectionModel().select(index);
+    }
+
+    public void projPath() {
+        path = Alert_Windows.chooseDir();
     }
 
 
@@ -166,6 +172,13 @@ public class CTR_Project_Edit {
             } catch (Exception e) {
                 label_fail.setText("Die maximale Zeit konnte nicht geändert werden");
             }
+        }
+
+        //Überprüfe Pfad
+        if(!path.equals(project.getProjectpath())) {
+            project.setProjectpath(path);
+            project.menu_goToDir.setDisable(false);
+            System.out.println("Pfad geändert");
         }
 
         if(approved) {

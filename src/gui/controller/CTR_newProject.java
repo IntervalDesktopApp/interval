@@ -26,6 +26,10 @@ public class CTR_newProject {
     private TextField input_maxHours;
     @FXML
     private Label label_output;
+    @FXML
+    private Button btn_projPath;
+
+    private String path = "";
 
     //private CSV_ClientHandler csv_clientHandler = new CSV_ClientHandler();
     //private CSV_ProjectHandler csv_projectHandler = new CSV_ProjectHandler();
@@ -43,6 +47,10 @@ public class CTR_newProject {
             chb_customer.getItems().add(client.getName());
         }
         chb_customer.getSelectionModel().selectLast();
+    }
+
+    public void openProjPath() {
+        path = Alert_Windows.chooseDir();
     }
 
     public void save() {
@@ -65,7 +73,7 @@ public class CTR_newProject {
                         try {
 
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/project_module.fxml"));
-                            CTR_Project_Module project_module = new CTR_Project_Module(Manager.clients.get(customerIndex), input_name.getText(), maxHours, Manager.projectList.size());
+                            CTR_Project_Module project_module = new CTR_Project_Module(Manager.clients.get(customerIndex), input_name.getText(), maxHours, Manager.projectList.size(), path);
                             fxmlLoader.setController(project_module);
                             Manager.projectList.add(project_module);
                             project_module.getStorageObjects().add(new StorageObject(LocalDate.now(), 0, "Projekt angelegt"));

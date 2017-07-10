@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,6 +18,9 @@ import javafx.util.Duration;
 import main.Main_Application;
 import object.ClientStorageObject;
 import object.StorageObject;
+
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,6 +48,8 @@ public class CTR_Project_Module {
     private VBox vbox_detail;
     @FXML
     TitledPane titledPane;
+    @FXML
+    public MenuItem menu_goToDir;
 
     private String name;
     private ClientStorageObject client;
@@ -53,14 +61,16 @@ public class CTR_Project_Module {
     private int maxTimeHours = 0;
     private boolean running = false;
     private Timeline mainTime = new Timeline();
+    private String projectpath = "";
 
     private ArrayList<StorageObject> storageObjects = new ArrayList<>();
 
-    public CTR_Project_Module(ClientStorageObject client, String name, int maxTimeHours, int index) {
+    public CTR_Project_Module(ClientStorageObject client, String name, int maxTimeHours, int index, String projectpath) {
         this.name = name;
         this.client = client;
         this.maxTimeHours = maxTimeHours;
         this.index = index;
+        this.projectpath = projectpath;
     }
 
     public void initialize() {
@@ -78,9 +88,9 @@ public class CTR_Project_Module {
             getTimeToday();
             textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
         }
-        if(timeToday != 0) {
+        /*if(timeToday != 0) {
             titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
-        }
+        }*/
 
         if(timeToday == mainSec) {
             label_time.setVisible(false);
@@ -88,6 +98,9 @@ public class CTR_Project_Module {
         }
         label_time.setText(Manager.printTime(mainSec));
         label_time_today.setText(Manager.printTime(timeToday));
+        if(projectpath.equals("")) {
+            menu_goToDir.setDisable(true);
+        }
     }
 
 
@@ -135,7 +148,7 @@ public class CTR_Project_Module {
             btn_timer.setText("\uF00E");
             //btn_timer.setId("");
             btn_timer.setStyle("-fx-text-fill: rgb(65, 63, 84);");
-            titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
+            //titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
            // main_hbox.setStyle("-fx-background-color: rgba(140, 255, 152, 0.7);");
         }
     }
@@ -224,6 +237,19 @@ public class CTR_Project_Module {
             label_time.setText(Manager.printTime(mainSec));
             label_time_today.setText(Manager.printTime(timeToday));
         }
+    }
+
+    public void goToDir() {
+        if(projectpath.equals("")) {
+            System.out.println("kein Pfad gewählt");
+        } else {
+            try {
+                Desktop.getDesktop().open(new File(projectpath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void toArchiv() throws IOException {
@@ -334,4 +360,11 @@ public class CTR_Project_Module {
         this.maxTimeHours = maxTimeHours;
     }
 
+    public String getProjectpath() {
+        return projectpath;
+    }
+
+    public void setProjectpath(String projectpath) {
+        this.projectpath = projectpath;
+    }
 }

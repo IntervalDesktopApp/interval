@@ -27,7 +27,7 @@ public class CSV_ProjectHandler {
         CSVWriter writer = new CSVWriter(new FileWriter("data/trackingData.csv"), ';');
 
         for(CTR_Project_Module projects : Manager.projectList) {
-            String header = "1" + ";" + projects.getClient().getName() + ";" + projects.getName() + ";" + projects.getMaxTimeHours();
+            String header = "1" + ";" + projects.getClient().getName() + ";" + projects.getName() + ";" + projects.getMaxTimeHours() + ";" + projects.getProjectpath();
             String[] headerEntries = header.split(";");
             writer.writeNext(headerEntries);
             for(StorageObject storage : projects.getStorageObjects()) {
@@ -61,8 +61,14 @@ public class CSV_ProjectHandler {
                             clientObject = client;
                         }
                     }
+                    String projpath = "";
+                    try {
+                        projpath = line[4];
+                    } catch (Exception e){
+                        System.out.println("kein pfad vergeben");
+                    }
                     //
-                    Manager.projectList.add(new CTR_Project_Module(clientObject, line[2], Integer.parseInt(line[3]), Manager.projectList.size()));
+                    Manager.projectList.add(new CTR_Project_Module(clientObject, line[2], Integer.parseInt(line[3]), Manager.projectList.size(), projpath));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("Projekt konnte nicht erstellt werden");

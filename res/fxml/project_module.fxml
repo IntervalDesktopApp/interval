@@ -61,6 +61,7 @@
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#showProjectEdit" text="Bearbeiten" />
                         <MenuItem mnemonicParsing="false" onAction="#resetTime" text="Zeit auf Null setzen" />
+                        <MenuItem mnemonicParsing="false" onAction="#goToDir" text="Öffne Projektpfad" fx:id="menu_goToDir"/>
                         <MenuItem mnemonicParsing="false" onAction="#toArchiv" text="Projekt abschließen" />
                         <MenuItem mnemonicParsing="false" onAction="#deleteProject" text="Projekt löschen" />
                      </items>
