@@ -220,10 +220,17 @@ public class CTR_Project_Edit {
         if((seconds - project.getMainSec()) > 0) {
             comment = Alert_Windows.inputBox("Kommentar", "Kommentar für die korrigierte Zeit einfügen", "Was hast du in dieser Zeit gemacht?");
             if (comment.equals("")) {
-                comment = "Zeit korrigiert";
+                //comment = "Zeit korrigiert";
+                StorageObject lastStore = project.getStorageObjects().get(project.getStorageObjects().size()-1);
+                lastStore.setSeconds(lastStore.getSec() + (seconds - project.getMainSec()));
+            } else {
+                project.addStorageObject(new StorageObject(LocalDate.now(),seconds-project.getMainSec(), comment));
             }
+        } else {
+            StorageObject lastStore = project.getStorageObjects().get(project.getStorageObjects().size()-1);
+            lastStore.setSeconds(lastStore.getSec() + (seconds - project.getMainSec()));
         }
-        project.addStorageObject(new StorageObject(LocalDate.now(),seconds-project.getMainSec(), comment));
+
         project.setMainSec(seconds);
         System.out.println("sec-prosec: " + (seconds-project.getMainSec()));
     }

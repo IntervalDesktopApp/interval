@@ -284,8 +284,8 @@
     -fx-opacity: 0.32;
 }
 
-.project .actions .more > .context-menu {
-    -fx-font-size: 12px;
+.project .actions .more .context-menu {
+    -fx-font-size: 15px;
 }
 
 .project .actions .menu-button > .arrow-button {
@@ -384,8 +384,8 @@
     -fx-opacity: 0.32;
 }
 
-.report .actions .more > .context-menu {
-    -fx-font-size: 12px;
+.report .actions .more .context-menu {
+    -fx-font-size: 15px;
 }
 
 .report .actions .menu-button > .arrow-button {

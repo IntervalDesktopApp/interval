@@ -64,7 +64,7 @@
                            </cursor>
                            <items>
                               <MenuItem fx:id="menu_tracking" mnemonicParsing="false" text="Details" />
-                              <MenuItem mnemonicParsing="false" onAction="#reopen" text="wieder eröffnen" />
+                              <!--MenuItem mnemonicParsing="false" onAction="#reopen" text="wieder eröffnen" /> -->
                            </items>
                            <styleClass>
                               <String fx:value="btns" />
