@@ -88,10 +88,15 @@ public class CTR_Project_Module {
             getTimeToday();
             textArea_comment.setText(storageObjects.get(storageObjects.size()-1).getComment());
         }
-        /*if(timeToday != 0) {
-            titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
-        }*/
+        //Wenn heute noch keine Zeit getrackt wurde, dann wird die Zeit nur schwach angezeigt
+        if(timeToday == 0) {
+            //titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
+            label_time_today.setStyle("-fx-text-fill: rgb(190, 190, 190);");
+            label_time.setStyle("-fx-text-fill: rgb(190, 190, 190);");
+            btn_timer.setStyle("-fx-text-fill: rgb(190, 190, 190);");
+        }
 
+        //Wenn Heute getrackte Zeit mit Gesamtzeit übereinstimmt, braucht gesamtzeit nicht angezeigt zu werden
         if(timeToday == mainSec) {
             label_time.setVisible(false);
             label_time.setManaged(false);
@@ -148,6 +153,10 @@ public class CTR_Project_Module {
             btn_timer.setText("\uF00E");
             //btn_timer.setId("");
             btn_timer.setStyle("-fx-text-fill: rgb(65, 63, 84);");
+            //Zeiten werden farblich kräftiger, für den Fall das sie vorher 0 und somit schwach waren
+            label_time_today.setStyle("-fx-text-fill: rgb(0, 0, 0);");
+            label_time.setStyle("-fx-text-fill: rgb(0, 0, 0);");
+
             //titledPane.setStyle("-fx-background-color: rgb(48, 148, 44);");
            // main_hbox.setStyle("-fx-background-color: rgba(140, 255, 152, 0.7);");
         }
