@@ -3,6 +3,7 @@ package handling;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import gui.controller.CTR_Project_Module;
+import gui.controller.CTR_Report;
 import javafx.scene.paint.Color;
 import object.ClientStorageObject;
 import object.Report_Object;
@@ -34,6 +35,23 @@ public class Archiv_Handler {
             String temp = "0" + ";" + storage.getDate() + ";" + storage.getSec() + ";" + storage.getComment();
             String[] entries = temp.split(";");
             writer.writeNext(entries);
+        }
+        writer.close();
+    }
+
+    public static void writeWholeArchiv() throws IOException {
+        FileWriter pw = new FileWriter("data/archiv.csv");
+        CSVWriter writer = new CSVWriter(pw, ';');
+
+        for(Report_Object report : archivObjects) {
+            String header = "1" + ";" + report.getClient().getName() + ";" + report.getName() + ";" + report.getMaxTime();
+            String[] headerEntries = header.split(";");
+            writer.writeNext(headerEntries);
+            for(StorageObject storage : report.getStorageObjects()) {
+                String temp = "0" + ";" + storage.getDate() + ";" + storage.getSec() + ";" + storage.getComment();
+                String[] entries = temp.split(";");
+                writer.writeNext(entries);
+            }
         }
         writer.close();
     }

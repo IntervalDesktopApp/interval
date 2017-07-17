@@ -80,7 +80,7 @@ public class CTR_Report {
         reports = new ArrayList<>();
         for(CTR_Project_Module project : Manager.projectList) {
             if(project.getAllDates().contains(date)){
-                reports.add(new Report_Object(project.getName(), project.getClient(), project.getMaxTimeHours(), project.getStorageObjects(), reports.size()));
+                reports.add(new Report_Object(project.getName(), project.getClient(), project.getMaxTimeHours(), project.getStorageObjects(), reports.size(), this));
                 dayTimeSeconds += project.getSecondsByDate(date);
             }
         }
@@ -88,6 +88,7 @@ public class CTR_Report {
         for(Report_Object report : Archiv_Handler.archivObjects) {
             if(report.getAllDates().contains(date)){
                 reports.add(report);
+                report.setCtr_report(this);
                 dayTimeSeconds += report.getSecondsByDate(date);
             }
         }
