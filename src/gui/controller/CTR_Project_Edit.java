@@ -89,7 +89,7 @@ public class CTR_Project_Edit {
         boolean approved = true;
         boolean alreadyAsked = false;
 
-        //Nsme ändern was auch jede Namensvariable in den Storageobjekten umfasst
+        //Name ändern was auch jede Namensvariable in den Storageobjekten umfasst
         if(!textfield_name.getText().equals(project.getName())) {
             System.out.println("name geändert: " + textfield_name.getText());
             project.setName(textfield_name.getText());
@@ -102,7 +102,7 @@ public class CTR_Project_Edit {
                 int hours = Integer.parseInt(textfield_hour.getText());
                 int minutes = Integer.parseInt(textfield_min.getText()) + checkAddMin();
                 setProjectTime(hours, minutes);
-                System.out.println("Es wurden Stunden und MInuten geändert");
+                System.out.println("Es wurden Stunden und Minuten geändert");
                 alreadyAsked = true;
             } catch (Exception e) {
                 e.printStackTrace();

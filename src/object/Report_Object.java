@@ -9,10 +9,7 @@ import handling.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -71,6 +68,7 @@ public class Report_Object {
 
     public void initialize() {
         label_projName.setText(name);
+        label_projName.setTooltip(new Tooltip(name));
         label_client.setText(client.getName());
         label_time.setText(Manager.printTimeWithoutSec(timeOfDay()));
         char p = client.getName().charAt(0);
