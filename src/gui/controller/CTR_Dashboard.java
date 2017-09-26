@@ -6,6 +6,7 @@ import handling.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -13,6 +14,9 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import main.Main_Application;
 
@@ -52,6 +56,7 @@ public class CTR_Dashboard implements Initializable {
         // inludierten Menu Controller auf selected
         Main_Application.setdashboardController(this);
         em_MenuController.menu_dashboard.setSelected(true);
+        btn_switchMenu.setTextFill(Color.rgb(61, 155, 140));
         //Clients laden
         if(csv_clientHandler.fileExist("data/clients.csv")) {
             try {
@@ -111,12 +116,14 @@ public class CTR_Dashboard implements Initializable {
             left_menu_hbox.setMaxWidth(30);
             btn_switchMenu.setText(">");
             Main_Application.primaryStage.setWidth(Main_Application.primaryStage.getWidth() - menuSize);
+            Main_Application.primaryStage.setX(Main_Application.primaryStage.getX() + menuSize);
         } else {
             left_menu_hbox.setMinWidth(menuSize);
             left_menu_hbox.setPrefWidth(menuSize);
             left_menu_hbox.setMaxWidth(menuSize);
             btn_switchMenu.setText("<");
             Main_Application.primaryStage.setWidth(Main_Application.primaryStage.getWidth() + menuSize);
+            Main_Application.primaryStage.setX(Main_Application.primaryStage.getX() - menuSize);
         }
     }
 

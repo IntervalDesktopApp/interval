@@ -89,7 +89,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Separator>
-      <ToggleButton alignment="CENTER_LEFT" mnemonicParsing="false" styleClass="btn" text="ERRUNGENSCHAFTEN" toggleGroup="$menuitems">
+      <!--ToggleButton alignment="CENTER_LEFT" mnemonicParsing="false" styleClass="btn" text="ERRUNGENSCHAFTEN" toggleGroup="$menuitems">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -103,7 +103,7 @@
          <VBox.margin>
             <Insets />
          </VBox.margin>
-      </ToggleButton>
+      </ToggleButton-->
       <Separator maxHeight="286.0" prefHeight="286.0" prefWidth="200.0" styleClass="menudividerbig" visible="false">
          <cursor>
             <Cursor fx:constant="DEFAULT" />

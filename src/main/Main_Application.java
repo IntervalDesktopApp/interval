@@ -1,3 +1,8 @@
+/*
+© 2017 Eike Dreyer All Rights Reserved
+Alle Rechte dieser Software liegen beim Verfasser Eike Dreyer
+*/
+
 package main;
 
 import gui.controller.CTR_Project_Module;
@@ -20,7 +25,7 @@ import java.io.IOException;
 
 public class Main_Application extends Application {
 
-    public static final String build = "0.52";
+    public static final String build = "0.53";
 
     private final String fn = "SourceSansPro-";
     private final String[] fonts = {"uiicons.ttf", fn+"Black.tff", fn+"BlackItalic.tff", fn+"Bold.tff",

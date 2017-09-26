@@ -75,6 +75,7 @@ public class CTR_Project_Module {
 
     public void initialize() {
         label_projName.setText(name);
+        label_projName.setTooltip(new Tooltip(name));
         label_client.setText(client.getName());
         char p = client.getName().charAt(0);
         char pUpper = Character.toUpperCase(p);

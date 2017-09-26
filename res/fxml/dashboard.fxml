@@ -18,7 +18,6 @@
          <children>
             <fx:include fx:id="em_Menu" source="main_menu.fxml" />
             <ToggleButton fx:id="btn_switchMenu" mnemonicParsing="false" onAction="#switchMenu" text="&lt;" />
-
          </children>
       </HBox>
    </left>
@@ -27,7 +26,12 @@
          <children>
             <HBox>
                <children>
-                  <Label fx:id="label_build" />
+                  <Label fx:id="impressum" text="Programmierung: Eike Dreyer / Design: Tobias Bormann">
+                     <font>
+                        <Font size="11.0"/>
+                     </font>
+                  </Label>
+
                </children>
                <VBox.margin>
                   <Insets />
